@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Logo from '@/images/pardy.png'
 import { Button, cn } from '@nextui-org/react'
 import { usePathname } from 'next/navigation'
+import { signUserOut } from '@/actions/auth'
 
 const links = [
   { route: '/dashboard', name: 'Home' },
@@ -24,6 +25,9 @@ const Side = () => {
     } else {
       return path.includes(route)
     }
+  }
+  const LogOut = () => {
+    signUserOut()
   }
   return (
     <div className="w-full h-full px-3 relative">
@@ -49,7 +53,7 @@ const Side = () => {
         ))}
       </div>
       <div className="absolute bottom-0 w-full left-0 px-4">
-        <Button fullWidth variant="ghost">
+        <Button fullWidth variant="ghost" onClick={() => LogOut()}>
           Sign Out
         </Button>
       </div>
